@@ -1,0 +1,3 @@
+import { NextResponse } from 'next/server'
+import { normalizeUsername } from '@/lib/analyzer'
+export async function POST(req:Request){try{const body=await req.json();const username=normalizeUsername(String(body?.input||''))||'creator';const ideas=[`3 mistakes ${username} followers keep making`,`The fastest way to improve your ${username} content this week`,`I tested this content format for 7 days — here is what happened`,`5 hooks I would use for ${username} right now`,`Turn your best-performing topic into a 5-part Reel series`,`Before you post your next Reel, check these 4 things`];return NextResponse.json({username,ideas})}catch{return NextResponse.json({error:'Invalid request'},{status:400})}}
